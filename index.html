@@ -1,1 +1,111 @@
 
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Video Studio</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#10111a;color:white;font-family:Arial,sans-serif;padding:20px}
+.container{max-width:850px;margin:auto}
+header{text-align:center;padding:30px 10px}
+h1{font-size:32px;color:#a78bfa}
+.card{background:#1c1d2b;padding:20px;border-radius:16px;margin:15px 0}
+label{display:block;margin:14px 0 8px}
+textarea,input,select{width:100%;padding:13px;border-radius:9px;border:1px solid #414258;background:#11121d;color:white}
+textarea{height:120px;resize:vertical}
+button{background:#7955e8;color:white;border:0;border-radius:9px;padding:14px 20px;font-weight:bold;margin-top:15px;width:100%;font-size:16px}
+button:active{opacity:.8}
+.result{white-space:pre-wrap;line-height:1.6}
+.small{color:#aaa;font-size:13px}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<h1>🎬 AI VIDEO STUDIO</h1>
+<p>Hayalindeki videoyu oluşturmaya başla.</p>
+<p class="small">Türkçe Yapay Zekâ Video Atölyesi</p>
+</header>
+<div class="card">
+<h2>1. Video Fikrini Gir</h2>
+<label>Video konusu</label>
+<textarea id="topic" placeholder="Örnek: Dünyanın en gizemli 5 olayı..."></textarea>
+<label>Video formatı</label>
+<select id="format">
+<option>YouTube Shorts (Dikey)</option>
+<option>YouTube Uzun Video</option>
+<option>Instagram Reels</option>
+<option>TikTok</option>
+</select>
+<label>Video süresi</label>
+<select id="duration">
+<option>30 saniye</option>
+<option>60 saniye</option>
+<option>3 dakika</option>
+<option>8 dakika</option>
+<option>15 dakika</option>
+</select>
+<label>Video tarzı</label>
+<select id="style">
+<option>Sinematik ve gerçekçi</option>
+<option>Gizem ve belgesel</option>
+<option>Eğlenceli ve komik</option>
+<option>Eğitici</option>
+</select>
+<button onclick="generate()">✨ Senaryo Oluştur</button>
+</div>
+<div class="card">
+<h2>2. Oluşturulan Senaryo</h2>
+<div id="result" class="result">Senaryon burada görünecek.</div>
+<button onclick="copyText()">📋 Senaryoyu Kopyala</button>
+</div>
+<div class="card">
+<h2>3. Sonraki Özellikler</h2>
+<p>🎙️ Türkçe yapay zekâ seslendirme</p>
+<p>🎞️ Otomatik sahne oluşturma</p>
+<p>📝 Altyazı üretimi</p>
+<p>📱 Dikey ve yatay video desteği</p>
+<p class="small">Bu özellikler sonraki geliştirme aşamalarında eklenecek.</p>
+</div>
+</div>
+<script>
+function generate(){
+const topic=document.getElementById("topic").value.trim();
+const format=document.getElementById("format").value;
+const duration=document.getElementById("duration").value;
+const style=document.getElementById("style").value;
+if(!topic){alert("Lütfen video konusunu yaz.");return;}
+const result=`VİDEO SENARYOSU
+
+KONU: ${topic}
+FORMAT: ${format}
+SÜRE: ${duration}
+TARZ: ${style}
+
+GİRİŞ:
+Bunu daha önce hiç duymadınız! Bugün ${topic} konusunu inceliyoruz.
+
+GELİŞME:
+Bu konunun en dikkat çekici yönlerini, şaşırtıcı ayrıntılarını ve merak uyandıran noktalarını keşfediyoruz.
+
+KAPANIŞ:
+Peki siz bu konuda ne düşünüyorsunuz? Yorumlara yazın ve yeni videolar için takipte kalın.
+
+SAHNE PLANI:
+1. Dikkat çekici açılış
+2. Konunun tanıtımı
+3. Ana olay ve görseller
+4. Şaşırtıcı detay
+5. Etkileyici kapanış`;
+document.getElementById("result").textContent=result;
+}
+function copyText(){
+const text=document.getElementById("result").textContent;
+navigator.clipboard.writeText(text).then(()=>alert("Senaryo kopyalandı!"));
+}
+</script>
+</body>
+</html>
+
